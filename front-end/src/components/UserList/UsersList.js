@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getUsers } from '../../js/actions/userActions';
 import UserCard from './UserCard';
+import './userList.css';
 
 const UsersList = () => {
     const dispatch = useDispatch();
