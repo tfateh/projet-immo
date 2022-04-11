@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Modal, Spinner, Table } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux'
 import { getUsers } from '../../js/actions/userActions';
 import UserCard from './UserCard';
@@ -7,6 +8,7 @@ import './userList.css';
 const UsersList = () => {
     const dispatch = useDispatch();
     const Users = useSelector((state)=>state.userReducer.user);
+    const loading = useSelector((state) => state.productsReducer.loading);
     const er = useSelector((state)=>state.userReducer.er);
     const errors= useSelector((state)=>state.userReducer.errors);
     const [show,setShow]= useState(true);
@@ -16,7 +18,7 @@ const UsersList = () => {
         dispatch(getUsers());
     },[dispatch]
     );
-  return loading? (
+  return loading ? (
     <Spinner animation="border" role="status">
     <span className="visually-hidden">Loading...</span>
   </Spinner>

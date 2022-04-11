@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
+import { ProgressBar } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { getAuthUser } from "../../JS/actions/authActions";
-import ProductCard from "../ProductsList/ProductCard";
+import { getAuthUser } from "../../js/actions/authActions";
+import ProductCard from "../ProductList/productCard";
 import "./Profile.css";
 
 const Profile = () => {

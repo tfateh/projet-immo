@@ -1,7 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useDispatch } from 'react-redux';
-import {Card} from 'react-bootstrap';
+import {Button, Card} from 'react-bootstrap';
 import {deleteUser} from '../../js/actions/userActions'
 const UserCard = (user) => {
     const dispatch = useDispatch()

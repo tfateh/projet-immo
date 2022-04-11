@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
+import { Spinner } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllProducts } from "../../JS/actions/productsActions";
+import  {getAllProducts}  from "../../js/actions/productsActions";
 import ProductForm from "../ProductsForm/ProductsForm";
-import ProductCard from "./ProductCard";
+import ProductCard from "./productCard";
 import "./productslist.css";
 
 const ProductsList = () => {

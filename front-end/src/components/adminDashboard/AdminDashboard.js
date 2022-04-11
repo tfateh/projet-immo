@@ -3,8 +3,8 @@ import { Card } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
 
-import { getAllProducts } from '../../JS/actions/productsActions';
-import { getUsers } from '../../JS/actions/userActions';
+import { getAllProducts } from '../../js/actions/productsActions';
+import { getUsers } from '../../js/actions/userActions';
 
 const AdminDashboard = () => {
     const dispatch = useDispatch()

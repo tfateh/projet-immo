@@ -3,7 +3,7 @@ import {Nav,Container,Navbar,NavDropdown} from 'react-bootstrap';
 import Button from "@mui/material/Button";
 import {Link} from "react-router-dom"; 
 import"./Headers.css";
-const Headers = () => {
+const UserNav = () => {
   return (
     <div>
         <Navbar bg="light" expand="lg">
@@ -34,12 +34,10 @@ const Headers = () => {
         </NavDropdown>
         <div className="C-but">
         <Button component={Link} to={{ pathname: "/signin" }} color="inherit">
-            SignIn
+            LogOut
           </Button>
 
-          <Button component={Link} to={{ pathname: "/signup" }} color="inherit">
-            SingUp
-          </Button>
+          
           </div>
       </Nav>
     </Navbar.Collapse>
@@ -49,4 +47,4 @@ const Headers = () => {
   )
 }
 
-export default Headers
+export default UserNav

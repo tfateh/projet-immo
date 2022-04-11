@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import EditIcon from "@mui/icons-material/Edit";
-import "./productform.css";
-import { addProduct, updateProduct } from "../../JS/actions/productsActions";
+import { addProduct, updateProduct } from "../../js/actions/productsActions";
 import { useDispatch } from "react-redux";
 
 function ProductForm({ edit, product }) {
@@ -85,16 +84,16 @@ function ProductForm({ edit, product }) {
           <br />
           <Form.Control
             type="text"
-            placeholder="Brand ..."
-            value={brand}
+            placeholder="typeOfTransaction ..."
+            value={typeOfTransaction}
             onChange={(e) => setTypeOfTransaction(e.target.value)}
           />
 
           <br />
           <Form.Control
             type="text"
-            placeholder="Model ..."
-            value={model}
+            placeholder="description ..."
+            value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
           <br />
@@ -107,15 +106,15 @@ function ProductForm({ edit, product }) {
           <br />
           <Form.Control
             type="text"
-            placeholder="Desc ..."
-            value={desc}
+            placeholder="Area ..."
+            value={area}
             onChange={(e) => setArea(e.target.value)}
           />
           <br/>
           <Form.Control
             type="text"
-            placeholder="Desc ..."
-            value={desc}
+            placeholder="Adresse ..."
+            value={adresseProduct}
             onChange={(e) => setAdresseProduct(e.target.value)}
           />
           <br />

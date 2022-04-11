@@ -1,21 +1,25 @@
 
+import React , {useEffect} from "react"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import  Carousels  from '../Carousel/Carousels';
 import Footer from '../Footers/Footers';
-import SignIn from '../SignIn';
-import SignUp from '../SignUp/SignUp';
+import  {getAllProducts}  from "../../js/actions/productsActions";
+import { useDispatch } from "react-redux";
+import Headers from "../Headers/Headers";
 
 
+const Home=()=> {
+  const dispatch=useDispatch();
 
-
-function Home () {
+  useEffect(() => {
+    dispatch(getAllProducts);
+    
+  }, )
  return(
      <div Style = {{bgcolor:"rgb(202, 200, 200)"}}>
-       <Carousels/>,
-       <SignIn/>,
-       <SignUp/>,
+       <Headers/>
+       <Carousels/>
        <Footer/>
-       
      </div>
 
  )   

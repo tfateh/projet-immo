@@ -3,7 +3,7 @@
 
 import { Carousel } from 'react-bootstrap';
 import React from 'react'
-
+import"./Carousels.css";
  const Carousels = () => {
   return (
    <div>

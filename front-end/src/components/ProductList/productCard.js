@@ -15,7 +15,7 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useDispatch, useSelector } from "react-redux";
 import ProductForm from "../ProductsForm/ProductsForm";
-import { deleteProduct } from "../../JS/actions/productsActions";
+import { deleteProduct } from "../../js/actions/productsActions";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
