@@ -1,5 +1,4 @@
-
-  import axios from "axios";
+import axios from "axios";
 import { GET_AUTH_USER, GET_AUTH_USER_FAILED, GET_AUTH_USER_SUCCESS, LOG_OUT, SIGN_IN, SIGN_IN_FAILED, SIGN_IN_SUCCESS, SIGN_UP, SIGN_UP_FAILED, SIGN_UP_SUCCESS } from "../actiontypes/authTypes";
   
   export const signUp = (newUser) => async (dispatch) => {

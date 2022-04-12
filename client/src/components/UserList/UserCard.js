@@ -12,7 +12,7 @@ const UserCard = (user) => {
   <Card.Body>
     <Card.Title>{user.firstName}{user.lastName}</Card.Title>
     <Card.Text>
-      {user.phone}
+      {user.phoneNumber}
       <br/>
       {user.adresse}
       <br/>
