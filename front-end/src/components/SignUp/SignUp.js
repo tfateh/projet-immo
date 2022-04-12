@@ -26,7 +26,7 @@ function Copyright(props) {
       {'.'}
     </Typography>
   );
-}
+};
 
 const theme = createTheme();
 
@@ -35,6 +35,7 @@ export default function SignUp() {
   const navigate = useNavigate();
 
   const isAuth = useSelector((state) => state.authReducer.isAuth);
+  
 
   useEffect(() => {
     if (isAuth) {
@@ -46,12 +47,12 @@ export default function SignUp() {
   const [lastName, setlastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [adress, setAdress] = useState("");
+  const [phone, setPhone] = useState("");
+  const [adresse, setAdresse] = useState("");
 
   const handelPhoneChange = (value) => {
     if (value) {
-      setPhoneNumber(value);
+      setPhone(value);
     }
   };
 
@@ -63,18 +64,18 @@ export default function SignUp() {
       lastName,
       email,
       password,
-      phoneNumber,
-      adress,
+      phone,
+      adresse,
     };
 
     dispatch(SignUp(newUser));
 
-    setEmail("");
-    setFirstName("");
-    setlastName("");
-    setAdress("");
-    setPassword("");
-    setPhoneNumber("");
+    // setEmail("");
+    // setFirstName("");
+    // setlastName("");
+    // setAdresse("");
+    // setPassword("");
+    // setPhone("");
   };
 
 
@@ -106,6 +107,8 @@ export default function SignUp() {
                   fullWidth
                   id="firstName"
                   label="First Name"
+                  onChange={(e)=> setFirstName(e.target.value)}
+                  value={firstName}
                   autoFocus
                 />
               </Grid>
@@ -113,6 +116,8 @@ export default function SignUp() {
                 <TextField
                   required
                   fullWidth
+                  onChange={(e=> setlastName(e.target.value))}
+                  value = {lastName}
                   id="lastName"
                   label="Last Name"
                   name="lastName"
@@ -123,6 +128,8 @@ export default function SignUp() {
                 <TextField
                   required
                   fullWidth
+                  onChange={(e)=> setAdresse(e.target.value)}
+                  value={adresse}
                   id="email"
                   label="Address"
                   name="Address"
@@ -133,6 +140,8 @@ export default function SignUp() {
                 <TextField
                   required
                   fullWidth
+                  onChange={(e)=> setPhone(e.target.value)}
+                  value={phone}
                   id="email"
                   label="Phone"
                   name="Phone"
@@ -143,6 +152,8 @@ export default function SignUp() {
                 <TextField
                   required
                   fullWidth
+                  onChange={(e)=> setEmail(e.target.value)}
+                  value={email}
                   id="email"
                   label="Email Address"
                   name="email"
@@ -153,6 +164,8 @@ export default function SignUp() {
                 <TextField
                   required
                   fullWidth
+                  onChange={(e)=> setPassword(e.target.value)}
+                  value={password}
                   name="password"
                   label="Password"
                   type="password"
@@ -172,12 +185,13 @@ export default function SignUp() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              onClick={(e) => register(e)}
             >
               Sign Up
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/SignIn" variant="body2">
                   Already have an account? Sign in
                 </Link>
               </Grid>

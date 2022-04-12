@@ -1,7 +1,7 @@
 const express = require('express')
 const isAuth = require("../middlewares/passeport-setup");
 const isAdmin = require("../middlewares/admin");
-const { deleteProducts, deleteProductByAdmin } = require('../controllers/products.controlls');
+const {  deleteProductByAdmin } = require('../controllers/products.controlls');
 const { getAllUsers } = require('../controllers/user.controller');
 
 

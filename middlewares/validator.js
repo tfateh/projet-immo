@@ -8,7 +8,7 @@ exports.registerRules = () => [
   check("password","password is required").notEmpty(),
   check("phone","phone is required").notEmpty(),
   check("adresse","adresse is required").notEmpty(),
-  check("password","password must be atleast 12 characters").isLength({ min: 11 }).matches(/(?=.*?[A-Z])(?=.*[0-9])/).withMessage('password must contain atleast a capital letter,  a number'),
+  check("password","password must be atleast 6 characters").isLength({ min: 5 }).matches(/(?=.*?[A-Z])(?=.*[0-9])/).withMessage('password must contain atleast a capital letter,  a number'),
 ];
 
 exports.loginRules = () => [

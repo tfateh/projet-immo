@@ -1,5 +1,5 @@
 const passport = require("passport");
-const Users = require("../models/Users");
+const User = require("../Models/User");
 const JwtStrategy = require("passport-jwt").Strategy;
 const ExtractJwt = require("passport-jwt").ExtractJwt;
 
@@ -10,7 +10,7 @@ const opts = {
 
 passport.use(
   new JwtStrategy(opts, async (jwt_payload, done) => {
-    const user = await Users.findOne({ _id: jwt_payload.id }).populate(
+    const user = await User.findOne({ _id: jwt_payload.id }).populate(
       "products"
     );
 

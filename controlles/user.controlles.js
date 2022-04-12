@@ -1,46 +1,48 @@
 const Products = require ("../Models/Products")
-const Users = require("../Models/Users")
+const User = require("../Models/User")
 
 
 
-exports.userRegister = async (req,res)=>{
-  const newUser = await new Users ({...req.body}) 
-  const email = req.body.email
-  const Users = await Users.findOne({email})  
+exports.getUserById = async (req, res) => {
+  
   try {
-      if(Users) return res.status(401).json({msg:'user exist'})
-      await newUser.save()
-      res.status(201).json({msg:'new User Register Succefuly'})
+    const userexist = await User.findById(req.params.userId)
+    if(!userexist) return res.status(404).json({msg:"User doesnt exist"})
+
+    const user = await User.findById(req.params.userId).populate("products");
+   
+   res.status(200).json({msg:"found user", user });
   } catch (error) {
-     res.status(402).json({msg:'Register User Failed'}) 
+    res.status(400).json({ errors: [{ msg: "Get user failed" }] });
   }
-};
+}
+
 
 exports.getAllUsers = async (req, res) => {
 
-  try {
-      const users = await Users.find();
-
-       res.status(200).json({ msg: "Found all users" , users})
-      
-  } catch (error) {
-    res.status(401).json({ errors: [{ msg: "Wrong page" }] });
-  }
-};
-
-exports.deleteUsers = async (req,res)=>{
-
-  const user = await Users.findOne({ _id: req.params.userId} );
     try {
-      
-      if(user.role === "admin") return res.status(403).json({msg:"Cant delete an admin "})
-      await Users.findByIdAndDelete({_id:req.params.userId})
-      await Products.deleteMany({userId:req.params.userId})
-      res.status(201).json({msg:"deleted"})
-      
+        const users = await User.find();
 
+         res.status(200).json({ msg: "Found all users" , users})
+        
     } catch (error) {
-      res.status(401).json({ errors: [{ msg: "Not authorized" }] });
-    
-}
+      res.status(401).json({ errors: [{ msg: "Wrong page" }] });
+    }
+  };
+
+  exports.deleteUsers = async (req,res)=>{
+
+    const user = await User.findOne({ _id: req.params.userId} );
+      try {
+        
+        if(user.role === "admin") return res.status(403).json({msg:"Cant delete an admin "})
+        await User.findByIdAndDelete({_id:req.params.userId})
+        await Products.deleteMany({userId:req.params.userId})
+        res.status(201).json({msg:"deleted"})
+        
+
+      } catch (error) {
+        res.status(401).json({ errors: [{ msg: "Not authorized" }] });
+      
+  }
 }

@@ -46,8 +46,8 @@ import { GET_AUTH_USER, GET_AUTH_USER_FAILED, GET_AUTH_USER_SUCCESS, LOG_OUT, SI
   
       dispatch({ type: GET_AUTH_USER_SUCCESS, payload: response.data });
     } catch (error) {
-      console.log(error);
-      localStorage.removeItem("token");
+      // console.log(error);
+      // localStorage.removeItem("token");
       dispatch({ type: GET_AUTH_USER_FAILED, payload: error.response.data });
     }
   };

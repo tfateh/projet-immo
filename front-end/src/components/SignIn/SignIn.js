@@ -86,6 +86,7 @@ const theme = createTheme();
               label="Email Address"
               name="email"
               autoComplete="email"
+              onChange={(e) => setEmail(e.target.value)}
               autoFocus
             />
             <TextField
@@ -97,12 +98,14 @@ const theme = createTheme();
               type="password"
               id="password"
               autoComplete="current-password"
+              onChange={(e) => setPassword(e.target.value)}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
             <Button
+            onClick={(e) => login(e)}
               type="submit"
               fullWidth
               variant="contained"

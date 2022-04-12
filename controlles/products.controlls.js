@@ -1,6 +1,5 @@
 const Products = require('../Models/Products');
-const Products = require('../Models/Products');
-const Users = require ('../Models/Users');
+const User = require('../Models/User');
 
 exports.addProducts = async (req,res)=>{
 console.log(req.user._id);
@@ -10,7 +9,7 @@ const newProducts = new Products({
 });
 try {
     const product = await newProducts.save();
-    const user = await Users.findOne({_id: req.user._id});
+    const user = await User.findOne({_id: req.user._id});
     user.product=[...user.product,newProducts.id];
     await user.save(),
     res.status(201).json({mg:'Product add succefly'});

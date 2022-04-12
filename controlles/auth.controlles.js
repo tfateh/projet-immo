@@ -1,61 +1,65 @@
-const Users = require('../Models/Users');
 const bcrypt = require('bcryptjs');
-const jwt = require ('jsonwebtoken');
-
-exports.userRegister = async (req,res)=>{
-    const newUser = await new Users({...req.body});
-    const email = newUser.email;
-try {
-    const user = await Users.findOne({ email });
-    if (user) return res.status(402).json({ msg: "User already exist" });
-
-    const payload = {
-        id: newUser._id,
-        fullName:newUser.fullName,
-        email:newUser.email,
-        phone:newUser.phone,
-        adresse:newUser.adresse,
+const jwt = require("jsonwebtoken");
+const User = require('../Models/User');
 
 
-    };
+exports.userRegister = async (req, res) => {
+  const newUser = await new User({ ...req.body });
+  const email = req.body.email;
 
-    const token = await jwt.sign(payload, process.env.secretOrPrivateKey);
+  try {
+    const user = await User.findOne({ email });
+    if (user)
+      return res.status(402).json({ errors: [{ msg: `User already exist` }] });
+    const password = newUser.password
 
-    const salt = await bcrypt.genSalt(10);
-    const hash = await bcrypt.hash(newUser.password, salt);
-    newUser.password = hash;
+    let salt = await bcrypt.genSalt(10);
+    let hash = await bcrypt.hash(password, salt)
 
-    newUser.save();
-    res.status(202).json({ msg: "Register success", token: `Bearer ${token}` });
+    newUser.password = hash
 
-} catch (error) {
-    console.log(error);
-    res.status(402).json({ msg: "User register failed", errors: error });
-}
-};
-// user log
-exports.userLogin = async (req, res) => {
-    const { email, password } = req.body;
-
-    try {
-        const user = await Users.findOne({ email });
-
-    if (!user) return res.status(402).json({ msg: "Bad credentiels" });
-
-    const isMatch = await bcrypt.compare(password, user.password);
-
-    if (!isMatch) return res.status(402).json({ msg: "Bad credentiels" });
 
     const payload = {
-        id: newUser._id,
-        fullName:newUser.fullName,
-        email:newUser.email,
-        phone:newUser.phone,
-        adresse:newUser.adresse,
-    };
-    const token = await jwt.sign(payload, process.env.secretOrPrivateKey);
-    res.status(201).json({ token: `Bearer ${token}` });   
-    } catch (error) {
-        res.status(401).json({ errors: error });  
+      id: newUser._id,
+      firstname: newUser.firstname,
+      lastname: newUser.lastname,
+      email: newUser.email,
     }
+    const token = await jwt.sign(payload, process.env.secretOrPrivateKey)
+
+    await newUser.save();
+
+
+    res.status(200).json({ msg: `Register user success`, token: `Bearer ${token}` });
+  } catch (error) {
+    res.status(400).json({ errors: [{ msg: `Register user failed` }] });
+  }
 };
+
+exports.userLogin = async (req, res) => {
+  const { email, password } = req.body
+  const user = await User.findOne({ email })
+
+  try {
+    if (!user) return res.status(403).json({ msg: "Bad credentials" })
+
+    const isMatch = await bcrypt.compare(password, user.password)
+
+    if (!isMatch) return res.status(403).json({ msg: "Bad credentials" })
+
+    const payload = {
+      id: user._id,
+      firstname: user.firstname,
+      lastname: user.lastname,
+      email: user.email,
+
+    }
+
+    const token = await jwt.sign(payload, process.env.secretOrPrivateKey)
+
+    res.status(203).json({ token: `Bearer ${token}` })
+
+  } catch (error) {
+    res.status(400).json({ msg: "failed", error: error })
+  }
+}

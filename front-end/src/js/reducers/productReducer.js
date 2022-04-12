@@ -11,7 +11,7 @@ import {
     UPDATE_PRODUCT,
     UPDATE_PRODUCT_FAILED,
     UPDATE_PRODUCT_SUCCESS,
-  } from "../actionstypes/productstypes";
+  } from "../actiontypes/productstypes";
   
   const initialState = {
     loading: false,

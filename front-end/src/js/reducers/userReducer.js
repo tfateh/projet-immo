@@ -2,7 +2,7 @@ import {
     GET_USER_BY_ID,
     GET_USER_BY_ID_FAILED,
     GET_USER_BY_ID_SUCCESS,
-  } from "../actionstypes/usertypes";
+  } from "../actiontypes/usertypes";
   
   const initialState = {
     user: {},
