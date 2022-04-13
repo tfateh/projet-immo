@@ -1,9 +1,12 @@
 import React from 'react';
 import {Nav,Container,Navbar,NavDropdown} from 'react-bootstrap';
 import Button from "@mui/material/Button";
-import {Link} from "react-router-dom"; 
+import LogoutIcon from "@mui/icons-material/Logout"; 
 import"./Headers.css";
+import { logout } from '../../js/actions/authActions';
+import { useDispatch } from "react-redux";
 const UserNav = () => {
+  const dispatch = useDispatch();
   return (
     <div>
         <Navbar bg="light" expand="lg">
@@ -33,8 +36,9 @@ const UserNav = () => {
           
         </NavDropdown>
         <div className="C-but">
-        <Button component={Link} to={{ pathname: "/signin" }} color="inherit">
-            LogOut
+        <Button onClick={() => dispatch(logout())} color="inherit">
+            Logout
+            <LogoutIcon />
           </Button>
 
           

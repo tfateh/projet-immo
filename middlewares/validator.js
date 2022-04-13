@@ -6,8 +6,8 @@ exports.registerRules = () => [
   check("email", "This field is required").notEmpty(),
   check("email", "Enter a valid email").isEmail(),
   check("password","password is required").notEmpty(),
-  check("phone","phone is required").notEmpty(),
-  check("adresse","adresse is required").notEmpty(),
+  // check("phone","phone is required").notEmpty(),
+  check("adress","adresse is required").notEmpty(),
   check("password","password must be atleast 6 characters").isLength({ min: 5 }).matches(/(?=.*?[A-Z])(?=.*[0-9])/).withMessage('password must contain atleast a capital letter,  a number'),
 ];
 
