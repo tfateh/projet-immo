@@ -1,5 +1,5 @@
 require("dotenv").config({path:"./config/.env"});
-
+// const admin = require("./routes/admin");
 const { Logger } = require("concurrently");
 const express = require("express");
 const connectDB = require("./config/connectDB");
@@ -18,6 +18,7 @@ connectDB();
 app.use('/auth', auth);
 app.use('/user', User);
 app.use('/product', Products);
+// app.use('/root',admin);
 
 app.listen(process.env.Port || process.env.port, (err)=>{
    err? console.log(`server connected failed`)

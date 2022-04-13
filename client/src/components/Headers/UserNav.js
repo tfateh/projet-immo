@@ -1,54 +1,56 @@
-import React from 'react';
-import {Nav,Container,Navbar,NavDropdown} from 'react-bootstrap';
+import * as React from "react";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import LogoutIcon from "@mui/icons-material/Logout"; 
-import"./Headers.css";
-import { logout } from '../../js/actions/authActions';
-import { useDispatch } from "react-redux";
-const UserNav = () => {
+import LogoutIcon from "@mui/icons-material/Logout";
+import { Link } from "react-router-dom";
+import { logout } from "../../js/actions/authActions";
+import { useDispatch, useSelector } from "react-redux";
+
+export default function NavBar() {
   const dispatch = useDispatch();
+  const role = useSelector((state) => state.authReducer.user.role);
+
   return (
-    <div>
-        <Navbar bg="light" expand="lg">
-  <Container fluid>
-    <Navbar.Brand href="#">Tunisia-Home Real Stat</Navbar.Brand>
-    <Navbar.Toggle aria-controls="navbarScroll" />
-    <Navbar.Collapse id="navbarScroll">
-      <Nav
-        className="me-auto my-2 my-lg-0"
-        style={{ maxHeight: '100px' }}
-        navbarScroll
-      >
-        <Nav.Link href="#action1">Home</Nav.Link>
-        <Nav.Link href="#action2">About Us</Nav.Link>
-        <NavDropdown title="Location" id="navbarScrollingDropdown">
-          <NavDropdown.Item href="#action3">Appartement</NavDropdown.Item>
-          <NavDropdown.Item href="#action4">Maison & Villa</NavDropdown.Item>
-          <NavDropdown.Item href="#action4">Local Commercial & Bureau</NavDropdown.Item>
-          <NavDropdown.Divider />
-        
-        </NavDropdown>
-        <NavDropdown title="Vente" id="navbarScrollingDropdown">
-          <NavDropdown.Item href="#action3">Appartement</NavDropdown.Item>
-          <NavDropdown.Item href="#action4">Maison & Villa</NavDropdown.Item>
-          <NavDropdown.Item href="#action4">Local Commercial & Bureau</NavDropdown.Item>
-          <NavDropdown.Divider />
-          
-        </NavDropdown>
-        <div className="C-but">
-        <Button onClick={() => dispatch(logout())} color="inherit">
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar position="fixed">
+        <Toolbar>
+          <Typography variant="h6" noWrap component="div">
+            LOGO
+          </Typography>
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{ flexGrow: 1 }}
+          ></Typography>
+
+          <Button
+            component={Link}
+            to={{ pathname: "/productslist" }}
+            color="inherit"
+          >
+            Products
+          </Button>
+
+          <Button
+            component={Link}
+            to={{ pathname: "/profile" }}
+            color="inherit"
+          >
+            {role ==="admin" ?<Link to="/dashboard">
+              <Button variant="outline-success" >Admin Dashbord</Button>
+               </Link>:null}
+            Profile
+          </Button>
+
+          <Button onClick={() => dispatch(logout())} color="inherit">
             Logout
             <LogoutIcon />
           </Button>
-
-          
-          </div>
-      </Nav>
-    </Navbar.Collapse>
-  </Container>
-</Navbar>
-    </div>
-  )
+        </Toolbar>
+      </AppBar>
+    </Box>
+  );
 }
-
-export default UserNav

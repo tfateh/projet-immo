@@ -30,7 +30,7 @@ const Profile = () => {
         </h1>
 
         <span>Email : {user.email}</span>
-        <span>Adress : {user.adresse}</span>
+        <span>Adress : {user.adress}</span>
         <span>Phone: {user.phone}</span>
         <span>Roles: {user.role}</span>
       </section>
